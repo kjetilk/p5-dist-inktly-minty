@@ -284,7 +284,7 @@ our $VERSION   = '{$version}';
 {}=head1 BUGS
 
 Please report any bugs to
-L<http://rt.cpan.org/Dist/Display.html?Queue={URI::Escape::uri_escape($dist_name)}>.
+L<https://github.com/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}/issues>.
 
 {}=head1 SEE ALSO
 
@@ -303,7 +303,7 @@ WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
 MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 COMMENCE dist.ini
-;;class='Dist::Inkt::Profile::{uc $author->{cpanid}}'
+;;class='Dist::Inkt::Profile::TOBYINK'
 ;;name='{$dist_name}'
 
 COMMENCE meta/changes.pret
@@ -317,18 +317,24 @@ COMMENCE meta/doap.pret
 # This file contains general metadata about the project.
 
 @prefix : <http://usefulinc.com/ns/doap#>.
+@prefix dc:   <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#>.
 
 `{$dist_name}`
-	:programming-language "Perl" ;
-	:shortdesc            "{$abstract}";
-	:homepage             <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
-	:download-page        <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
-	:bug-database         <http://rt.cpan.org/Dist/Display.html?Queue={URI::Escape::uri_escape($dist_name)}>;
-#	:repository           [ a :GitRepository; :browse <https://github.com/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}> ];
-	:created              {sprintf('%04d-%02d-%02d', 1900+(localtime)[5], 1+(localtime)[4], (localtime)[3])};
-	:license              <{$licence->url}>;
-	:maintainer           cpan:{uc $author->{cpanid}};
-	:developer            cpan:{uc $author->{cpanid}}.
+   :programming-language "Perl" ;
+   :shortdesc            "{$abstract}";
+   :homepage             <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
+   :download-page        <https://metacpan.org/release/{URI::Escape::uri_escape($dist_name)}>;
+   :bug-database         <https://github.com/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}/issues>;
+   :repository           [ a :GitRepository;
+                           :browse <https://github.com/{lc $author->{cpanid}}/p5-{lc URI::Escape::uri_escape($dist_name)}>;
+                           prov:has_provenance <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2F{lc $author->{cpanid}}%2Fp5-{lc URI::Escape::uri_escape($dist_name)}&serialization=PROV-O#>
+                         ];
+#   :support-forum        <irc://irc.perl.org/#perlrdf> ;
+   :created              {sprintf('%04d-%02d-%02d', 1900+(localtime)[5], 1+(localtime)[4], (localtime)[3])};
+   :license              <{$licence->url}>;
+   :maintainer           cpan:{uc $author->{cpanid}};
+   :developer            cpan:{uc $author->{cpanid}}.
 
 <{$licence->url}>
 	dc:title  "{$licence->name}".
@@ -337,11 +343,14 @@ COMMENCE meta/people.pret
 # This file contains data about the project developers.
 
 @prefix : <http://xmlns.com/foaf/0.1/>.
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix result: <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2F{lc $author->{cpanid}}%2Fp5-{lc URI::Escape::uri_escape($dist_name)}&serialization=PROV-O#>
 
 cpan:{uc $author->{cpanid}}
-	:name  "{$author->{name}}";
-	:page  <https://metacpan.org/author/{uc $author->{cpanid}}>;
-	:mbox  <mailto:{$author->{mbox}}>.
+  :name  "{$author->{name}}";
+  :page  <https://metacpan.org/author/{uc $author->{cpanid}}>;
+  :mbox  <mailto:{$author->{mbox}}>;
+  owl:sameAs result:user-{$author->{name}}.
 
 COMMENCE meta/makefile.pret
 # This file provides instructions for packaging.
