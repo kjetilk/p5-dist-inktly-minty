@@ -334,10 +334,9 @@ COMMENCE meta/doap.pret
    :created              {sprintf('%04d-%02d-%02d', 1900+(localtime)[5], 1+(localtime)[4], (localtime)[3])};
    :license              <{$licence->url}>;
    :maintainer           cpan:{uc $author->{cpanid}};
+   :security-contact     cpan:{uc $author->{cpanid}};
    :developer            cpan:{uc $author->{cpanid}}.
 
-<{$licence->url}>
-	dc:title  "{$licence->name}".
 
 COMMENCE meta/people.pret
 # This file contains data about the project developers.
@@ -348,8 +347,6 @@ COMMENCE meta/people.pret
 
 cpan:{uc $author->{cpanid}}
   :name  "{$author->{name}}";
-  :page  <https://metacpan.org/author/{uc $author->{cpanid}}>;
-  :mbox  <mailto:{$author->{mbox}}>;
   owl:sameAs result:user-{$author->{name}}.
 
 COMMENCE meta/makefile.pret
