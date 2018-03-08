@@ -343,7 +343,7 @@ COMMENCE meta/people.pret
 
 @prefix : <http://xmlns.com/foaf/0.1/>.
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
-@prefix result: <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2F{lc $author->{cpanid}}%2Fp5-{lc URI::Escape::uri_escape($dist_name)}&serialization=PROV-O#>
+@prefix result: <http://git2prov.org/git2prov?giturl=https%3A%2F%2Fgithub.com%2F{lc $author->{cpanid}}%2Fp5-{lc URI::Escape::uri_escape($dist_name)}&serialization=PROV-O#> .
 
 cpan:{uc $author->{cpanid}}
   :name  "{$author->{name}}";
