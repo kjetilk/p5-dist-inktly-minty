@@ -384,6 +384,8 @@ use Test::More;
 
 use_ok('{$module_name}');
 
+diag( "Testing {$module_name} ${$module_name}::VERSION, Perl $], $^X" );
+
 done_testing;
 
 COMMENCE xt/03meta_uptodate.config
